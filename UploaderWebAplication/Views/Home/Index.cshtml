@@ -1,0 +1,68 @@
+﻿<!--<div>
+
+    <form name="form1" method="post" action="api/upload" enctype="multipart/form-data">
+        <div>
+            <label>
+                Browse File
+            </label>
+            <input name="transactionFile" type="file" />
+        </div>
+        <div>
+            <input type="submit" value="Upload" />
+        </div>
+
+    </form>
+</div>
+ -->
+<div ng-controller="uploadController">
+    <button ngf-select="uploadFiles($files, $invalidFiles)" multiple ngf-max-size="1MB">
+        Select Files
+    </button>
+    <br><br>
+    Files:
+    <ul>
+        <li ng-repeat="f in files" style="font:smaller">
+            {{f.name}} {{f.$errorParam}}
+            <span class="progress" ng-show="f.progress >= 0">
+                <div style="width:{{f.progress}}%"
+                     ng-bind="f.progress + '%'"></div>
+            </span>
+        </li>
+        <li ng-repeat="f in errFiles" style="font:smaller">
+            {{f.name}} {{f.$error}} {{f.$errorParam}}
+        </li>
+    </ul>
+    <b>{{msg}}</b>
+</div>
+
+<div ng-controller="tranController">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <td>Id</td>
+                <td>Payment</td>
+                <td>Status</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="i in invoices">
+                <td>{{i.id}}</td>
+                <td>{{i.payment}}</td>
+                <td>{{i.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <select ng-model="currency" ng-options="c.Code for c in currencies" ng-change="getbycurrency()">
+        <option value="">choose currency</option>
+    </select>
+    <hr />
+    <select ng-model="status" ng-change="getbystatus()">
+        <option value="">choose status</option>
+        <option value="1">A</option>
+        <option value="2">R</option>
+        <option value="3">D</option>
+    </select>
+    <button ng-click="getbydate()">By Date</button>
+</div>
+
+
