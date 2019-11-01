@@ -165,7 +165,7 @@ namespace UploaderWebAplication.Controllers.api
                 DataRow row = table.NewRow();
                 row["Tid"] = rows[0];
                 row["Amount"] = decimal.Parse(rows[1].Replace(",","").Replace(".",","));
-                row["CurrencyCode"] = rows[2];
+                row["CurrencyCode"] = GetCurrencyId(rows[2].ToUpper()); 
                 row["TDate"] = date;
                 row["StatusId"] = GetStatusType(rows[4].ToUpper(), "csv");              
               
@@ -211,7 +211,7 @@ namespace UploaderWebAplication.Controllers.api
                 DataRow row = table.NewRow();
                 row["Tid"] = tran.Id;
                 row["Amount"] = decimal.Parse(tran.PaymentInfo.Amount.Replace(",", "").Replace(".", ","));
-                row["CurrencyCode"] = tran.PaymentInfo.CurrencyCode;
+                row["CurrencyCode"] = GetCurrencyId(tran.PaymentInfo.CurrencyCode);
                 row["TDate"] = date;
                 row["StatusId"] = (int)tran.Status;
 
@@ -258,7 +258,31 @@ namespace UploaderWebAplication.Controllers.api
             }
             return 0;
         }
-
+        
+        private int GetCurrencyId(string currency)
+        {
+            List<Currency> resp = new List<Currency>();
+            using (SqlConnection conn = new SqlConnection(Settings.Default.Connection))
+            using (SqlCommand comm = new SqlCommand("dbo.GetCurrencies", conn) { CommandType = CommandType.StoredProcedure })
+            {
+               
+                conn.Open();
+                using (SqlDataReader reader = comm.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                        while (reader.Read())
+                        {
+                            resp.Add(
+                                new Currency
+                                {
+                                    Id = int.Parse(reader["Id"].ToString()),
+                                    Code = reader["CurrencyCode"].ToString()
+                                });
+                        }
+                }
+            }
+            return resp.FirstOrDefault(r=>r.Code.ToUpper() == currency.ToUpper() ).Id;
+        }
         private static T FromXml<T>(string xml) where T : new()
         {
             if (string.IsNullOrEmpty(xml))

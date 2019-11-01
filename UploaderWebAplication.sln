@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UploaderWebAplication", "UploaderWebAplication\UploaderWebAplication.csproj", "{EFACED29-0E9A-40B1-8C10-D0791D64C1BB}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Uploader.DB", "Uploader.DB\Uploader.DB.sqlproj", "{B3F2DCDA-4A89-4FFD-8AA7-EACC13695B1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,12 @@ Global
 		{EFACED29-0E9A-40B1-8C10-D0791D64C1BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EFACED29-0E9A-40B1-8C10-D0791D64C1BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EFACED29-0E9A-40B1-8C10-D0791D64C1BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F2DCDA-4A89-4FFD-8AA7-EACC13695B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3F2DCDA-4A89-4FFD-8AA7-EACC13695B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3F2DCDA-4A89-4FFD-8AA7-EACC13695B1E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B3F2DCDA-4A89-4FFD-8AA7-EACC13695B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3F2DCDA-4A89-4FFD-8AA7-EACC13695B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3F2DCDA-4A89-4FFD-8AA7-EACC13695B1E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
